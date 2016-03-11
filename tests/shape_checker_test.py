@@ -789,7 +789,7 @@ class TestGetTriangleType(TestCase):
         Test
         """
         result = get_git_url(['git', 'config', '--get', 'remote.origin.url'])
-        self.assertEqual(result, "https://github.com/aamirkhan75/FinalLab")
+        self.assertEqual(result, "git://github.com/aamirkhan75/FinalLab.git")
 
     def test_0048_ask_test_exception(self):
         """
@@ -964,7 +964,7 @@ class TestGetTriangleType(TestCase):
         check_valid_path = Mock(return_value = True)
         os.path.isabs = Mock(return_value=True)
         get_diff_files = Mock(return_value = ['FileName'])
-        os.path.dirname = Mock(return_value='c:')
+        os.path.dirname = Mock(return_value='/')
         result = get_git_file_info('FileName')           
         self.assertEqual (result, '{} is a dirty repo'.format(os.path.basename("FileName")))
 
