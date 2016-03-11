@@ -667,7 +667,7 @@ class TestGetTriangleType(TestCase):
         Test
         """
         result = get_git_branch(['git', 'rev-parse', '--abbrev-ref', 'HEAD'])
-        self.assertEqual(result, 'HEAD')  
+        self.assertEqual(result, 'master')  
 
 
     #def test_0032_get_git_url(self):
@@ -911,7 +911,7 @@ class TestGetTriangleType(TestCase):
         """
         git_execute = Mock(return_value = 'modified \ aamir')
         result = get_file_info('C:')           
-        self.assertEqual (result, '') 
+        self.assertEqual (result, 'cbc4618c961f3e839b1ef4ac7f835a34c10a6c3b,Wed Mar 9 20:08:15 2016 -0800,aamirkhan75') 
 
 
     #0034 The system shall return the repo branch when asked 'What branch is <file path>?'
@@ -924,7 +924,7 @@ class TestGetTriangleType(TestCase):
         os.path.dirname = Mock (return_value = 'C:')
         git_execute = Mock (return_value = 'master')
         result = get_repo_branch('C:')           
-        self.assertEqual (result, 'HEAD')
+        self.assertEqual (result, 'master')
 
 
 
