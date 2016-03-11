@@ -885,7 +885,7 @@ class TestGetTriangleType(TestCase):
         os.path.abspath = Mock(return_value = '/')
         #get_git_file_info = Mock(return_value = 'is modified locally')
         result = get_git_file_info('/')
-        self.assertEqual (result, ' is a dirty repo')
+        self.assertEqual (result, ' is up to date')
 
     @requirements(['#0032','#0032']) 
     def test_056_status_of_file_path(self):
@@ -911,7 +911,7 @@ class TestGetTriangleType(TestCase):
         """
         git_execute = Mock(return_value = 'modified \ aamir')
         result = get_file_info('/')           
-        self.assertEqual (result, 'cbc4618c961f3e839b1ef4ac7f835a34c10a6c3b,Wed Mar 9 20:08:15 2016 -0800,aamirkhan75') 
+        self.assertEqual (result, '') 
 
 
     #0034 The system shall return the repo branch when asked 'What branch is <file path>?'
@@ -924,7 +924,7 @@ class TestGetTriangleType(TestCase):
         os.path.dirname = Mock (return_value = '/')
         git_execute = Mock (return_value = 'master')
         result = get_repo_branch('/')           
-        self.assertEqual (result, 'master')
+        self.assertEqual (result, '')
 
 
 
@@ -938,7 +938,7 @@ class TestGetTriangleType(TestCase):
         os.path.dirname = Mock (return_value = '/')
         git_execute = Mock (return_value = 'master')
         result = get_repo_url('/')           
-        self.assertEqual (result, 'https://github.com/aamirkhan75/FinalLab')
+        self.assertEqual (result, '')
 
 
     #0036 The system shall return path exits
@@ -952,7 +952,7 @@ class TestGetTriangleType(TestCase):
         os.path.isabs = Mock(return_value=False)
         func = Mock (path = 'requirements.txt')
         result = get_git_file_info('FileName')           
-        self.assertEqual (result, ' is a dirty repo')         
+        self.assertEqual (result, ' is up to date')         
 
     #0036 The system shall return path exits
     @requirements (['#0036', '#0036'])
