@@ -853,10 +853,10 @@ class TestGetTriangleType(TestCase):
         """
         os.path.exists = Mock(return_value = True)
         os.path.isabs = Mock(return_value = False)
-        os.path.abspath = Mock(return_value = 'C:')
+        os.path.abspath = Mock(return_value = '/')
         get_diff_files = Mock(return_value = ['usrf'])
         get_untracked_files = Mock(return_value = ['usrf'])
-        os.path.dirname = Mock(return_value = 'C:')
+        os.path.dirname = Mock(return_value = '/')
         logging.getLogger.debug = Mock(return_value = 'debug info: xxx')
         #is_file_in_repo = Mock (return_value = 'Yes')
         result = is_file_in_repo('FileName')
@@ -882,9 +882,9 @@ class TestGetTriangleType(TestCase):
         Test
         """
         os.path.isabs = Mock(return_value = True)
-        os.path.abspath = Mock(return_value = 'C:')
+        os.path.abspath = Mock(return_value = '/')
         #get_git_file_info = Mock(return_value = 'is modified locally')
-        result = get_git_file_info('C:')
+        result = get_git_file_info('/')
         self.assertEqual (result, ' is a dirty repo')
 
     @requirements(['#0032','#0032']) 
@@ -910,7 +910,7 @@ class TestGetTriangleType(TestCase):
         Test
         """
         git_execute = Mock(return_value = 'modified \ aamir')
-        result = get_file_info('C:')           
+        result = get_file_info('/')           
         self.assertEqual (result, 'cbc4618c961f3e839b1ef4ac7f835a34c10a6c3b,Wed Mar 9 20:08:15 2016 -0800,aamirkhan75') 
 
 
@@ -921,9 +921,9 @@ class TestGetTriangleType(TestCase):
         Test
         """
         os.path.isfile = Mock(return_value = True)
-        os.path.dirname = Mock (return_value = 'C:')
+        os.path.dirname = Mock (return_value = '/')
         git_execute = Mock (return_value = 'master')
-        result = get_repo_branch('C:')           
+        result = get_repo_branch('/')           
         self.assertEqual (result, 'master')
 
 
@@ -935,9 +935,9 @@ class TestGetTriangleType(TestCase):
         Test
         """
         os.path.isfile = Mock(return_value = True)
-        os.path.dirname = Mock (return_value = 'C:')
+        os.path.dirname = Mock (return_value = '/')
         git_execute = Mock (return_value = 'master')
-        result = get_repo_url('C:')           
+        result = get_repo_url('/')           
         self.assertEqual (result, 'https://github.com/aamirkhan75/FinalLab')
 
 
@@ -966,7 +966,7 @@ class TestGetTriangleType(TestCase):
         get_diff_files = Mock(return_value = ['FileName'])
         os.path.dirname = Mock(return_value='/')
         result = get_git_file_info('FileName')           
-        self.assertEqual (result, '{} is a dirty repo'.format(os.path.basename("FileName")))
+        self.assertEqual (result, '{} is up to date'.format(os.path.basename("FileName")))
 
     #0038 When asked a question the system shall output the question to a log file.
     @requirements (['#0038' , '#0038'])
